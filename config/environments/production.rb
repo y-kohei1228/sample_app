@@ -56,7 +56,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
 
-  host = "urban-guacamole-q495pxrjw56c46gp.github.dev" # クラウドIDEのURLを指定
+  host = "#{ENV['CODESPACE_NAME']}-3000.#{ENV['GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN']}" # クラウドIDEのURLを指定
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: host }
