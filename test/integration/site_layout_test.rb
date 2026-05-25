@@ -32,13 +32,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
-    assert_select "a[href=?]", signup_path
+    assert_select "a[href=?]", signup_path, count:0  # ログインしているのでsignupは表示されない
     assert_select "a[href=?]", user_path(@user)
     assert_select "a[href=?]", users_path # ログインしているのでUsersは表示される
     assert_select "a[href=?]", edit_user_path(@user)
   end
-
-  # test "the truth" do
-  #   assert true
-  # end
 end

@@ -22,7 +22,7 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
@@ -56,7 +56,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
 
-  host = "urban-guacamole-q495pxrjw56c46gp.github.dev" # クラウドIDEのURLを指定
+  host = "https://sample-app-1-ohu1.onrender.com/" # クラウドIDEのURLを指定
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: host }
