@@ -37,4 +37,13 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", users_path # ログインしているのでUsersは表示される
     assert_select "a[href=?]", edit_user_path(@user)
   end
+
+  test "home page stats" do
+    log_in_as(@user)
+    get root_path
+    assert_template 'static_pages/home'
+    assert_select 'a[href=?]', following_user_path(@user), text: /#{@user.following.count}/
+    assert_select 'a[href=?]', followers_user_path(@user), text: /#{@user.followers.count}/
+  end
+
 end
