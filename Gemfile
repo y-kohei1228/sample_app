@@ -21,10 +21,14 @@ gem 'sprockets-rails',            '3.4.2'
 gem 'sqlite3',                    '2.7.3'
 gem 'stimulus-rails',             '1.2.1'
 gem 'turbo-rails',                '1.4.0'
+gem 'simplecov',                  '0.12.0', require false
 
 group :development, :test do
-  gem 'debug',                    '1.7.1', platforms: %i[mri mingw x64_mingw]
+  gem 'rubocop',                  '1.85.0', require false
+  gem 'rubocop-rails',            '2.34.3', require false
+  gem 'debug',                    '1.7.1',  platforms: %i[mri mingw x64_mingw]
   gem 'reline',                   '0.5.10'
+  gem 'brakeman',                 '8.0.3',  require false
 end
 
 group :development do
