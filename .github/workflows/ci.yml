@@ -33,7 +33,7 @@ jobs:
       
       - name: Run RuboCop
         run: |
-          bundle exec rubocop --fail-level Warning
+          bundle exec rubocop --fail-level warning
 
       - name: Run tests
         run: bin/rails test
