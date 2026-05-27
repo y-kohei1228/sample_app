@@ -37,6 +37,10 @@ jobs:
 
       - name: Run tests
         run: bin/rails test
+      
+      - name: Check coverage
+        run: |
+          test -f coverage/.last_run.json
 
       - name: Run Brakeman
         run: |
