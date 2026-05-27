@@ -1,0 +1,47 @@
+name: Rails CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.7
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          bundle install
+
+      - name: Setup DB
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+      
+      - name: Run RuboCop
+        run: |
+          bundle exec rubocop --fail-level warning
+
+      - name: Run tests
+        run: bin/rails test
+      
+      - name: Check coverage
+        run: |
+          test -f coverage/.last_run.json
+
+      - name: Run Brakeman
+        run: |
+          bundle exec brakeman -q -w2

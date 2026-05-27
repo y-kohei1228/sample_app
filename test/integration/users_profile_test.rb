@@ -1,13 +1,13 @@
-require "test_helper"
+require 'test_helper'
 
 class UsersProfileTest < ActionDispatch::IntegrationTest
   include ApplicationHelper
-  
+
   def setup
     @user = users(:michael)
   end
 
-  test "profile display" do
+  test 'profile display' do
     get user_path(@user)
     assert_template 'users/show'
     assert_select 'title', full_title(@user.name)
@@ -20,7 +20,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "profile display stats" do
+  test 'profile display stats' do
     get user_path(@user)
     assert_template 'users/show'
     assert_select 'strong#following', text: @user.following.count.to_s
