@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.10'
+ruby '3.3.7'
 
 gem 'active_storage_validations', '0.9.8'
 gem 'bcrypt',                     '3.1.18'
