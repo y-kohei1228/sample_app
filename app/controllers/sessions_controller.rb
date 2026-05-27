@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
   def new
-    #debugger
+    # debugger
   end
 
   def create
-    @user = User.find_by( email: params[:session][:email].downcase )
-    if @user&.authenticate( params[:session][:password] )
+    @user = User.find_by(email: params[:session][:email].downcase)
+    if @user&.authenticate(params[:session][:password])
       if @user.activated?
         forwarding_url = session[:forwarding_url] # ユーザーログイン後にユーザー情報のページにリダイレクトする
         reset_session # ログインの直前に必ずこれを書くこと
@@ -14,14 +14,14 @@ class SessionsController < ApplicationController
         redirect_to forwarding_url || @user
       else
         # エラーメッセージを作成する
-        message = "Account not activated. "
-        message += "Check your email for the activation link."
+        message = 'Account not activated. '
+        message += 'Check your email for the activation link.'
         flash[:warning] = message
         redirect_to root_url
       end
     else
       flash.now[:danger] = 'Invalid email/password combination'
-      render 'new', status: :unprocessable_entity
+      render 'new', status: :unprocessable_content
     end
   end
 

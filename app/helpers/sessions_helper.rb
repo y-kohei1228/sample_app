@@ -1,5 +1,4 @@
 module SessionsHelper
-
   # 渡されたユーザーでログインする
   def log_in(user)
     session[:user_id] = user.id
@@ -16,32 +15,30 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token
   end
 
-
-  # 記憶トークンのcookieに対応するユーザーを返す
+  # ビュー/テスト側から呼ばれる current_user。可能ならコントローラの実装を委譲し、
+  # ない場合はセッション／Cookie から探すフォールバックを行う。
   def current_user
-    if ( user_id = session[:user_id] )
+    if defined?(controller) && controller.respond_to?(:current_user)
+      return controller.current_user
+    end
+
+    if (user_id = session[:user_id])
       user = User.find_by(id: user_id)
-      if user && session[:session_token] == user.session_token
-        @current_user = user
-      end
-    elsif ( user_id = cookies.encrypted[:user_id] )
-      #raise # テストがパスすれば、この部分がテストされていないことがわかる
-      user = User.find_by( id: user_id )
-      if user && user.authenticated?(:remember, cookies[:remember_token] )
+      return user if user && session[:session_token] == user.session_token
+    elsif (user_id = cookies.encrypted[:user_id])
+      user = User.find_by(id: user_id)
+      if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
-        @current_user = user
+        return user
       end
     end
+
+    nil
   end
 
   # 渡されたユーザーがカレントユーザーであればtrueを返す
   def current_user?(user)
     user && user == current_user
-  end
-
-  # ユーザーがログインしていればtrue、その他ならfalseを返す
-  def logged_in?
-    !current_user.nil?
   end
 
   # 永続的セッションを破棄する
@@ -53,9 +50,10 @@ module SessionsHelper
 
   # 現在のユーザーをログアウトする
   def log_out
-    forget(current_user)
+    forget(current_user) if current_user
+    session.delete(:user_id)
+    session.delete(:session_token)
     reset_session
-    @current_user = nil   # 安全のため
   end
 
   # アクセスしようとしたURLを保存する

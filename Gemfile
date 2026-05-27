@@ -4,31 +4,31 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.10'
 
 gem 'active_storage_validations', '0.9.8'
+gem 'bcrypt',                     '3.1.18'
 gem 'bootsnap',                   '1.16.0', require: false
+gem 'bootstrap-sass',             '3.4.1'
+gem 'bootstrap-will_paginate',    '1.0.0'
 gem 'concurrent-ruby',            '1.3.4'
 gem 'faker',                      '2.21.0'
 gem 'image_processing',           '1.12.2'
-gem 'will_paginate',              '3.3.1'
-gem 'bootstrap-will_paginate',    '1.0.0'
 gem 'importmap-rails',            '1.1.5'
 gem 'jbuilder',                   '2.14.1'
 gem 'puma',                       '6.6.1'
 gem 'rails',                      '8.0.2.1'
-gem 'bcrypt',                     '3.1.18'
-gem 'bootstrap-sass',             '3.4.1'
 gem 'sassc-rails',                '2.1.2'
+gem 'simplecov',                  '0.12.0', require: false
 gem 'sprockets-rails',            '3.4.2'
 gem 'sqlite3',                    '2.7.3'
 gem 'stimulus-rails',             '1.2.1'
 gem 'turbo-rails',                '1.4.0'
-gem 'simplecov',                  '0.12.0', require: false
+gem 'will_paginate',              '3.3.1'
 
 group :development, :test do
-  gem 'rubocop',                  '1.85.0', require: false
-  gem 'rubocop-rails',            '2.34.3', require: false
+  gem 'brakeman',                 '8.0.3',  require: false
   gem 'debug',                    '1.7.1',  platforms: %i[mri mingw x64_mingw]
   gem 'reline',                   '0.5.10'
-  gem 'brakeman',                 '8.0.3',  require: false
+  gem 'rubocop',                  '1.85.0', require: false
+  gem 'rubocop-rails',            '2.34.3', require: false
 end
 
 group :development do
@@ -50,9 +50,9 @@ group :test do
 end
 
 group :production do
-  gem 'pg',                       '1.3.5'
   gem 'aws-sdk-s3',               '1.114.0', require: false
   gem 'mailgun-ruby',             '1.3.10'
+  gem 'pg',                       '1.3.5'
 end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
