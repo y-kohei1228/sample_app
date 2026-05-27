@@ -28,4 +28,10 @@ class MicropostTest < ActiveSupport::TestCase
   test 'order should be most recent first' do
     assert_equal microposts(:most_recent), Micropost.first
   end
+
+  test 'image content type should be valid' do
+    @micropost.image.attach(io: StringIO.new('not an image'), filename: 'test.txt', content_type: 'text/plain')
+    assert_not @micropost.valid?
+  end
+
 end

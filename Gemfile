@@ -16,7 +16,7 @@ gem 'jbuilder',                   '2.14.1'
 gem 'puma',                       '6.6.1'
 gem 'rails',                      '8.0.2.1'
 gem 'sassc-rails',                '2.1.2'
-gem 'simplecov',                  '0.12.0', require: false
+gem 'simplecov',                  '0.22.0', require: false
 gem 'sprockets-rails',            '3.4.2'
 gem 'sqlite3',                    '2.7.3'
 gem 'stimulus-rails',             '1.2.1'

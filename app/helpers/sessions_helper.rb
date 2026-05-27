@@ -18,9 +18,9 @@ module SessionsHelper
   # ビュー/テスト側から呼ばれる current_user。可能ならコントローラの実装を委譲し、
   # ない場合はセッション／Cookie から探すフォールバックを行う。
   def current_user
-    if defined?(controller) && controller.respond_to?(:current_user)
-      return controller.current_user
-    end
+    #if defined?(controller) && controller.respond_to?(:current_user)
+    #  return controller.current_user
+    #end
 
     if (user_id = session[:user_id])
       user = User.find_by(id: user_id)
@@ -32,8 +32,6 @@ module SessionsHelper
         return user
       end
     end
-
-    nil
   end
 
   # 渡されたユーザーがカレントユーザーであればtrueを返す

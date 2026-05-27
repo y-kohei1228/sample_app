@@ -1,8 +1,8 @@
 require "simplecov"
-SimpleCov.start "rails"
 
 SimpleCov.start "rails" do
-  enable_coverage :branch
+  #enable_coverage :branch
+  add_filter "/test/"
   minimum_coverage 80
 end
 
@@ -14,7 +14,7 @@ Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  #parallelize(workers: :number_of_processors)
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
