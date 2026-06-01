@@ -36,7 +36,8 @@ jobs:
           bundle exec rubocop --fail-level warning
 
       - name: Run tests
-        run: bin/rails test
+        run: |
+          bundle exec rspec
       
       - name: Check coverage
         run: |
