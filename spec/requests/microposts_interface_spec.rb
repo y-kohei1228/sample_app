@@ -37,7 +37,7 @@ RSpec.describe 'Microposts interface', type: :request do
 
   it 'shows delete links on own profile page' do
     get user_path(user)
-    assert_select 'a', text: 'delete'
+    expect(response.body).to include('delete')
   end
 
   it 'deletes own micropost' do
@@ -49,7 +49,7 @@ RSpec.describe 'Microposts interface', type: :request do
 
   it 'does not show delete links on another user profile page' do
     get user_path(users(:archer))
-    assert_select 'a', text: 'delete', count: 0
+    expect(response.body).not_to include('delete')
   end
 
   it 'displays the correct micropost count in the sidebar' do
@@ -71,7 +71,10 @@ RSpec.describe 'Microposts interface', type: :request do
 
   it 'shows an image upload field' do
     get root_path
-    assert_select 'input[type="file"]'
+
+    doc = Nokogiri::HTML(response.body)
+
+    expect(doc.at_css('input[type="file"]')).not_to be_nil
   end
 
   it 'attaches an image to a micropost' do
