@@ -46,7 +46,6 @@ Naming/AccessorMethodName:
 Naming/PredicatePrefix:
   Exclude:
     - 'spec/**/*'
-    - 'test/test_helper.rb'
 
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -55,9 +54,7 @@ Naming/PredicatePrefix:
 # SupportedStylesForClasses: ~, nested, compact
 # SupportedStylesForModules: ~, nested, compact
 Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/channels/application_cable/connection_test.rb'
-    - 'test/test_helper.rb'
+  Exclude: []
 
 # Offense count: 34
 # Configuration parameters: AllowedConstants.
@@ -94,8 +91,7 @@ Style/RedundantFetchBlock:
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/RedundantInterpolation:
-  Exclude:
-    - 'test/controllers/static_pages_controller_test.rb'
+  Exclude: []
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -117,8 +113,7 @@ Style/SpecialGlobalVars:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
 Style/StringConcatenation:
-  Exclude:
-    - 'test/models/user_test.rb'
+  Exclude: []
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).

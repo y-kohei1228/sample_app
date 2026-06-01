@@ -39,6 +39,7 @@ Rails.application.configure do
 
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
+  config.action_mailer.preview_path = Rails.root.join('spec/mailers/previews')
 
   # Set localhost to be used by links generated in mailer templates.
   host = "#{ENV.fetch('CODESPACE_NAME', nil)}-3000.#{ENV.fetch('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN', nil)}" # クラウドIDEのURLを指定

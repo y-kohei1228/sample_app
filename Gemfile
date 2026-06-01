@@ -27,6 +27,7 @@ group :development, :test do
   gem 'brakeman',                 '8.0.3',  require: false
   gem 'debug',                    '1.7.1',  platforms: %i[mri mingw x64_mingw]
   gem 'reline',                   '0.5.10'
+  gem 'rspec-rails',              '~> 7.0'
   gem 'rubocop',                  '1.85.0', require: false
   gem 'rubocop-rails',            '2.34.3', require: false
 end
