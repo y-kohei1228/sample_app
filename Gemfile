@@ -27,6 +27,7 @@ group :development, :test do
   gem 'brakeman',                 '8.0.3',  require: false
   gem 'debug',                    '1.7.1',  platforms: %i[mri mingw x64_mingw]
   gem 'reline',                   '0.5.10'
+  gem 'rspec-rails',              '~> 7.0'
   gem 'rubocop',                  '1.85.0', require: false
   gem 'rubocop-rails',            '2.34.3', require: false
 end
@@ -41,9 +42,7 @@ end
 group :test do
   gem 'capybara',                 '3.38.0'
   gem 'guard',                    '2.18.0'
-  gem 'guard-minitest',           '2.4.6'
-  gem 'minitest',                 '5.18.0'
-  gem 'minitest-reporters',       '1.6.0'
+  gem 'guard-rspec',              '4.7.0'
   gem 'rails-controller-testing', '1.0.5'
   gem 'selenium-webdriver',       '4.8.3'
   gem 'webdrivers',               '5.2.0'
