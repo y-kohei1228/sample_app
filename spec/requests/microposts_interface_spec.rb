@@ -37,7 +37,8 @@ RSpec.describe 'Microposts interface', type: :request do
 
   it 'shows delete links on own profile page' do
     get user_path(user)
-    expect(response.body).to include('delete')
+    doc = Nokogiri::HTML(response.body)
+    expect(doc.css('a[data-turbo-method="delete"][href*="/microposts/"]').length).to be > 0
   end
 
   it 'deletes own micropost' do
@@ -49,7 +50,8 @@ RSpec.describe 'Microposts interface', type: :request do
 
   it 'does not show delete links on another user profile page' do
     get user_path(users(:archer))
-    expect(response.body).not_to include('delete')
+    doc = Nokogiri::HTML(response.body)
+    expect(doc.css('a[data-turbo-method="delete"][href*="/microposts/"]').length).to be 0
   end
 
   it 'displays the correct micropost count in the sidebar' do
