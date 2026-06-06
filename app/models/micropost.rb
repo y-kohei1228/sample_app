@@ -2,9 +2,8 @@ class Micropost < ApplicationRecord
   MAX_THREAD_DEPTH = 3
 
   belongs_to :user
-  belongs_to :parent, class_name: 'Micropost', optional: true
-  has_many :replies, -> { order(created_at: :desc) }, class_name: 'Micropost', foreign_key: 'parent_id', dependent: :destroy
-
+  belongs_to :parent, class_name: 'Micropost', optional: true, inverse_of: :replies
+  has_many :replies, -> { order(created_at: :asc) }, class_name: 'Micropost', foreign_key: 'parent_id', dependent: :destroy, inverse_of: :parent
 
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]

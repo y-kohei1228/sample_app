@@ -4,7 +4,7 @@ class MicropostsController < ApplicationController
 
   def show
     @micropost = Micropost.find(params[:id])
-    @reply = current_user&.microposts.build
+    @reply = current_user&.microposts&.build
   end
 
   def create
