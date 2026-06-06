@@ -295,6 +295,20 @@ input {
   }
 }
 
+.reply-link {
+  text-decoration: none;
+  color: #657786;
+}
+
+.reply-link:hover {
+  color: #1da1f2;
+  text-decoration: none;
+}
+
+.micropost-actions {
+  margin-top: 8px;
+}
+
 aside {
   textarea {
     height: 100px;

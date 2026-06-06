@@ -2,15 +2,21 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <%= micropost.content %>
+    <%= link_to micropost.content, micropost_path(micropost) %>
     <% if micropost.image.attached? %>
       <%= image_tag micropost.image.variant(:display) %>
     <% end %>
   </span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    Posted <%= link_to time_ago_in_words(micropost.created_at), micropost_path(micropost) %> ago.
     <% if current_user?(micropost.user) %>
       <%= link_to "delete", micropost, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
     <% end %>
   </span>
+  <div class="micropost-actions">
+    <%= link_to micropost_path(micropost),
+              class: "reply-link" do %>
+    💬 <%= micropost.replies.count %>
+    <% end %>
+  </div>
 </li>
