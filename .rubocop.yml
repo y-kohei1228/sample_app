@@ -73,7 +73,7 @@ Lint/AssignmentInCondition:
   Enabled: false
  
 # メソッド名等の命名の指摘
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Enabled: false
  
 # 未i18nのチェック（バリデーションエラーメッセージをi18nに登録するのはやや冗長？なためfalse）

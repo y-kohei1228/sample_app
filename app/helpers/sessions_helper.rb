@@ -18,18 +18,18 @@ module SessionsHelper
   # ビュー/テスト側から呼ばれる current_user。可能ならコントローラの実装を委譲し、
   # ない場合はセッション／Cookie から探すフォールバックを行う。
   def current_user
-    #if defined?(controller) && controller.respond_to?(:current_user)
+    # if defined?(controller) && controller.respond_to?(:current_user)
     #  return controller.current_user
-    #end
+    # end
 
     if (user_id = session[:user_id])
       user = User.find_by(id: user_id)
-      return user if user && session[:session_token] == user.session_token
+      user if user && session[:session_token] == user.session_token
     elsif (user_id = cookies.encrypted[:user_id])
       user = User.find_by(id: user_id)
       if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
-        return user
+        user
       end
     end
   end

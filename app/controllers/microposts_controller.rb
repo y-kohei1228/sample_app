@@ -2,12 +2,21 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user,  only: %i[create destroy]
   before_action :correct_user,    only: :destroy
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @reply = current_user&.microposts&.build
+  end
+
   def create
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
       flash[:success] = 'Micropost created!'
-      redirect_to root_url
+      if @micropost.parent.present?
+        redirect_to micropost_path(@micropost.parent)
+      else
+        redirect_to root_url
+      end
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home', status: :unprocessable_content
@@ -23,7 +32,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.expect(micropost: %i[content image])
+    params.require(:micropost).permit(:content, :image, :parent_id)
   end
 
   def correct_user

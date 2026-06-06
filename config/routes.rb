@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: %i[new create edit update]
-  resources :microposts,          only: %i[create destroy]
+  resources :microposts,          only: %i[show create destroy] do
+    resources :replies,           only: %i[create destroy]
+  end
   resources :relationships,       only: %i[create destroy]
   get 'microposts', to: 'static_pages#home'
 end

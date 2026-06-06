@@ -1,0 +1,44 @@
+<div class="micropost-detail">
+
+  <div class="micropost-header">
+    <%= gravatar_for @micropost.user, size: 60 %>
+
+    <div>
+      <h3><%= @micropost.user.name %></h3>
+    </div>
+  </div>
+
+  <div class="micropost-content">
+    <%= @micropost.content %>
+  </div>
+
+  <div class="micropost-time">
+    <%= @micropost.created_at.strftime("%Y/%m/%d %H:%M") %>
+  </div>
+
+  <hr>
+  <h4>返信する</h4>
+  <%= form_with model: @reply do |f| %>
+    <%= hidden_field_tag :parent_id, @micropost.id %>
+    <%= f.text_area :content, placeholder: "返信をポスト" %>
+    <%= f.submit "返信する", class: "btn btn-primary" %>
+  <% end %>
+
+  <hr>
+  <h4>返信</h4>
+  <% @micropost.replies.each do |reply| %>
+    <div class="reply">
+      <strong>
+      <%= reply.user.name %>
+      </strong>
+      <p>
+      <%= reply.content %>
+      </p>
+    </div>
+  <% end %>
+
+</div>
+
+<div class="actions mt-3">
+  <%= link_to "← タイムラインへ戻る", root_path %>
+</div>

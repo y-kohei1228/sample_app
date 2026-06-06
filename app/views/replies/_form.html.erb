@@ -1,0 +1,21 @@
+<div class="reply-form-card">
+  <div class="reply-avatar">
+    <%= gravatar_for(current_user, size: 48) %>
+  </div>
+
+  <div class="reply-form-content">
+    <%= form_with(model: [micropost, Reply.new], local: true) do |f| %>
+
+      <%= f.text_area :content,
+            placeholder: "返信をポスト",
+            rows: 3,
+            class: "reply-textarea" %>
+
+      <div class="reply-actions">
+        <%= f.submit "返信する",
+              class: "btn btn-primary reply-button" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
